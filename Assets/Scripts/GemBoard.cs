@@ -13,6 +13,7 @@ public class GemBoard : MonoBehaviour {
     [SerializeField] private GameObject rainbowStarPrefab;
 
     [SerializeField] private int boardSize;
+    [SerializeField] private int gemSize;
 
     private List<GameObject> gemOptions;
     private Gem[][] board;
@@ -34,41 +35,32 @@ public class GemBoard : MonoBehaviour {
             board[i] = new Gem[boardSize];
         }
 
-        GetComponent<GridLayoutGroup>().constraintCount = boardSize;
-
         FillBoard();
     }
-
-    private bool checkedForMatches = false;
     
-    private void Update() {
-        if (!checkedForMatches) {
-            var matches = CheckForMatches();
-            Debug.Log($"Found {matches.Count} matches");
-            foreach (var match in matches) {
-                match.SetSpinning(true);
-            }
-        }
-
-        checkedForMatches = true;
-    }
-
     private void FillBoard() {
         for (int x = 0; x < boardSize; x += 1) {
             for (int y = 0; y < boardSize; y += 1) {
-                //todo check previous x and y to make sure they aren't the same as this one
-                var gemIndex = Random.Range(0, gemOptions.Count);
-                var gemPrefab = gemOptions[gemIndex];
+                var type = Random.Range(0, gemOptions.Count);
+                
+                //checking previous gems to make sure we're not generating matches on the initial board
+                while ((x >= 2 && board[x - 1][y].GemType == type && board[x - 2][y].GemType == type) ||
+                       (y >= 2 && board[x][y - 1].GemType == type && board[x][y-2].GemType == type)) {
+                    type = Random.Range(0, gemOptions.Count);
+                }
+                
+                var gemPrefab = gemOptions[type];
                 var prefab = Instantiate(gemPrefab);
+                prefab.SetActive(true);
+                prefab.transform.SetParent(transform, false);
+                prefab.transform.position = new Vector3(x * gemSize, -(y * gemSize), -5);
+                
                 var gem = prefab.GetComponent<Gem>();
-
-                gem.GemType = gemIndex;
+                gem.GemType = type;
                 gem.SetBoardPosition(x, y);
                 gem.OnGemClick += OnGemClick;
                 
                 board[x][y] = gem;
-                prefab.SetActive(true);
-                prefab.transform.SetParent(transform, false);
             }
         }
     }
@@ -97,6 +89,7 @@ public class GemBoard : MonoBehaviour {
         var tempX = selectedGem.X;
         var tempY = selectedGem.Y;
 
+        //todo animate swapping
         selectedGem.transform.position = swapGem.transform.position;
         selectedGem.SetBoardPosition(swapGem.X, swapGem.Y);
         board[swapGem.X][swapGem.Y] = selectedGem;
@@ -107,14 +100,30 @@ public class GemBoard : MonoBehaviour {
         
         selectedGem.SetSpinning(false);
         selectedGem = null;
+
+        CheckForMatches();
     }
 
-    private HashSet<Gem> CheckForMatches() {
+    private void CheckForMatches() {
+        var matches = FindMatches();
+
+        foreach (var match in matches) {
+            board[match.X][match.Y] = null;
+            match.gameObject.SetActive(false);
+            Destroy(match.gameObject);
+        }
+        //destroy each game object
+        //move all higher gems downwards
+        //create new gems in empty spots
+        //check for more cascading matches
+    }
+
+    private HashSet<Gem> FindMatches() {
         var matches = new HashSet<Gem>();
         
         for (int x = 0; x < boardSize; x += 1) {
             for (int y = 0; y < boardSize; y += 1) {
-                int horizontalMatches = CheckHorizontalMatches(x, y);
+                int horizontalMatches = FindHorizontalMatches(x, y);
 
                 if (horizontalMatches > 1) {
                     for (int i = 0; i <= horizontalMatches; i++) {
@@ -128,7 +137,7 @@ public class GemBoard : MonoBehaviour {
         
         for (int y = 0; y < boardSize; y += 1) {
             for (int x = 0; x < boardSize; x += 1) {
-                int verticalMatches = CheckVerticalMatches(x, y);
+                int verticalMatches = FindVerticalMatches(x, y);
 
                 if (verticalMatches > 1) {
                     for (int i = 0; i <= verticalMatches; i++) {
@@ -143,17 +152,17 @@ public class GemBoard : MonoBehaviour {
         return matches;
     }
 
-    private int CheckHorizontalMatches(int x, int y) {
+    private int FindHorizontalMatches(int x, int y) {
         if (y >= boardSize - 1) return 0;
         if (board[x][y].GemType != board[x][y + 1].GemType) return 0;
         
-        return 1 + CheckHorizontalMatches(x, y + 1);
+        return 1 + FindHorizontalMatches(x, y + 1);
     }
 
-    private int CheckVerticalMatches(int x, int y) {
+    private int FindVerticalMatches(int x, int y) {
         if (x >= boardSize - 1) return 0;
         if (board[x][y].GemType != board[x + 1][y].GemType) return 0;
 
-        return 1 + CheckVerticalMatches(x + 1, y);
+        return 1 + FindVerticalMatches(x + 1, y);
     }
 }
