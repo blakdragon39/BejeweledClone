@@ -4,13 +4,14 @@ using UnityEngine.UI;
 
 public class GemBoard : MonoBehaviour {
 
-    // [SerializeField] private GameObject orangeHeartPrefab;
-    // [SerializeField] private GameObject greenGemPrefab;
-    // [SerializeField] private GameObject purpleGemPrefab;
-    // [SerializeField] private GameObject blueGemPrefab;
-    // [SerializeField] private GameObject diamondPrefab;
-    // [SerializeField] private GameObject yellowGemPrefab;
-    // [SerializeField] private GameObject rainbowStarPrefab;
+    [SerializeField] private GameObject blueGemPrefab;
+    [SerializeField] private GameObject diamondPrefab;
+    [SerializeField] private GameObject greenGemPrefab;
+    [SerializeField] private GameObject orangeHeartPrefab;
+    [SerializeField] private GameObject purpleGemPrefab;
+    [SerializeField] private GameObject redGemPrefab;
+    [SerializeField] private GameObject yellowGemPrefab;
+    [SerializeField] private GameObject rainbowStarPrefab;
 
     [SerializeField] private int boardSize;
     [SerializeField] private int gemSize;
@@ -21,21 +22,22 @@ public class GemBoard : MonoBehaviour {
     private Gem selectedGem;
 
     private void Start() {
-        // gemOptions = new List<GameObject> {
-        //     orangeHeartPrefab,
-        //     greenGemPrefab,
-        //     purpleGemPrefab,
-        //     blueGemPrefab,
-        //     diamondPrefab,
-        //     yellowGemPrefab
-        // };
+        gemOptions = new List<GameObject> {
+            blueGemPrefab,
+            diamondPrefab,
+            greenGemPrefab,
+            orangeHeartPrefab,
+            purpleGemPrefab,
+            redGemPrefab,
+            yellowGemPrefab
+        };
 
-        // board = new Gem[boardSize][];
-        // for (int i = 0; i < boardSize; i += 1) {
-        //     board[i] = new Gem[boardSize];
-        // }
+        board = new Gem[boardSize][];
+        for (int i = 0; i < boardSize; i += 1) {
+            board[i] = new Gem[boardSize];
+        }
 
-        // FillBoard();
+        FillBoard();
     }
     
     private void FillBoard() {
@@ -53,7 +55,7 @@ public class GemBoard : MonoBehaviour {
                 var prefab = Instantiate(gemPrefab);
                 prefab.SetActive(true);
                 prefab.transform.SetParent(transform, false);
-                prefab.transform.position = new Vector3(x * gemSize, -(y * gemSize), -5);
+                prefab.transform.position = new Vector3(x, -y, -5);
                 
                 var gem = prefab.GetComponent<Gem>();
                 gem.GemType = type;
