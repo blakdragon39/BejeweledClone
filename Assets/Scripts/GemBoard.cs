@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 public class GemBoard : MonoBehaviour {
 
-    [SerializeField] private GameObject orangeHeartPrefab;
-    [SerializeField] private GameObject greenGemPrefab;
-    [SerializeField] private GameObject purpleGemPrefab;
-    [SerializeField] private GameObject blueGemPrefab;
-    [SerializeField] private GameObject diamondPrefab;
-    [SerializeField] private GameObject yellowGemPrefab;
-    [SerializeField] private GameObject rainbowStarPrefab;
+    // [SerializeField] private GameObject orangeHeartPrefab;
+    // [SerializeField] private GameObject greenGemPrefab;
+    // [SerializeField] private GameObject purpleGemPrefab;
+    // [SerializeField] private GameObject blueGemPrefab;
+    // [SerializeField] private GameObject diamondPrefab;
+    // [SerializeField] private GameObject yellowGemPrefab;
+    // [SerializeField] private GameObject rainbowStarPrefab;
 
     [SerializeField] private int boardSize;
     [SerializeField] private int gemSize;
@@ -21,21 +21,21 @@ public class GemBoard : MonoBehaviour {
     private Gem selectedGem;
 
     private void Start() {
-        gemOptions = new List<GameObject> {
-            orangeHeartPrefab,
-            greenGemPrefab,
-            purpleGemPrefab,
-            blueGemPrefab,
-            diamondPrefab,
-            yellowGemPrefab
-        };
+        // gemOptions = new List<GameObject> {
+        //     orangeHeartPrefab,
+        //     greenGemPrefab,
+        //     purpleGemPrefab,
+        //     blueGemPrefab,
+        //     diamondPrefab,
+        //     yellowGemPrefab
+        // };
 
-        board = new Gem[boardSize][];
-        for (int i = 0; i < boardSize; i += 1) {
-            board[i] = new Gem[boardSize];
-        }
+        // board = new Gem[boardSize][];
+        // for (int i = 0; i < boardSize; i += 1) {
+        //     board[i] = new Gem[boardSize];
+        // }
 
-        FillBoard();
+        // FillBoard();
     }
     
     private void FillBoard() {

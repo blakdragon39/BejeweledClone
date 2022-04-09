@@ -18,10 +18,11 @@ public class Gem : MonoBehaviour {
         animator = GetComponent<Animator>();
         animator.enabled = false;
     }
-
+    
     private void OnMouseOver() {
         if (Input.GetMouseButtonDown(0)) {
-            OnGemClick(x, y);
+            // OnGemClick(x, y);
+            SetSpinning(true); //todo remove
         }
     }
     
