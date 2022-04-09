@@ -538,15 +538,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueGemPrefab: {fileID: 9061065112179743120, guid: e96fc5854a0662e4191c06d426cf2233, type: 3}
-  diamondPrefab: {fileID: 5316117491265368720, guid: efa324d3ea304c9408f154fc8b47a0fd, type: 3}
-  greenGemPrefab: {fileID: 884126518188115732, guid: db4d60f0e9d06c4428c051d50035c728, type: 3}
-  orangeHeartPrefab: {fileID: 154140633071119512, guid: c4f3dbfef1fe2484f8248a75bc109ef0, type: 3}
-  purpleGemPrefab: {fileID: 5878905733823050996, guid: 7cb261c54be005c4fa98adaa7cb0d3cc, type: 3}
-  redGemPrefab: {fileID: 6758089615671148502, guid: 3bc6caf41b764a64693d3d63f602fb1d, type: 3}
-  yellowGemPrefab: {fileID: 7516307686468607829, guid: eeda9bd918e3d224a8f6994df0ef5b2e, type: 3}
-  rainbowStarPrefab: {fileID: 8786015684918618228, guid: 8731bcd4822e1fb469043cba2336f419, type: 3}
+  diamondPrefab: {fileID: 2110263774270154584, guid: 935373587487c2c47a0724eef93cccf8, type: 3}
+  greenGemPrefab: {fileID: 8196306839045019613, guid: b1d7683b8387e934b9c6363a1310ca5e, type: 3}
+  orangeHeartPrefab: {fileID: 6027231363904896770, guid: ad86adc36f7542546b04b0b1041a2ba6, type: 3}
+  purpleGemPrefab: {fileID: 2462206256933277092, guid: d4cc1c1a7dd21c84e8eebab1d3f99930, type: 3}
+  redGemPrefab: {fileID: 479678269745848313, guid: b68d6ba4fdad8f144a98642a5cb270c2, type: 3}
+  yellowGemPrefab: {fileID: 8289396749506230152, guid: 4e6a83993ac3dd049a14c34db76527aa, type: 3}
+  rainbowStarPrefab: {fileID: 1822992089238855535, guid: bb74edacb29067d4c916eeeea67c3c6b, type: 3}
   boardSize: 10
-  gemSize: 52
+  gemSize: 42
 --- !u!114 &2091783943
 MonoBehaviour:
   m_ObjectHideFlags: 0

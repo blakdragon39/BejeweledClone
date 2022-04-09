@@ -55,7 +55,7 @@ public class GemBoard : MonoBehaviour {
                 var prefab = Instantiate(gemPrefab);
                 prefab.SetActive(true);
                 prefab.transform.SetParent(transform, false);
-                prefab.transform.position = new Vector3(x, -y, -5);
+                prefab.transform.localPosition = new Vector3(x * gemSize, -(y * gemSize), -5);
                 
                 var gem = prefab.GetComponent<Gem>();
                 gem.GemType = type;
