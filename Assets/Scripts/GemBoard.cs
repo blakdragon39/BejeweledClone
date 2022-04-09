@@ -68,6 +68,7 @@ public class GemBoard : MonoBehaviour {
     }
 
     private void OnGemClick(int x, int y) {
+        //todo diagonal not working
         var nextSelectedGem = board[x][y];
         
         if (selectedGem == null) {

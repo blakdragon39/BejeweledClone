@@ -21,8 +21,7 @@ public class Gem : MonoBehaviour {
     
     private void OnMouseOver() {
         if (Input.GetMouseButtonDown(0)) {
-            // OnGemClick(x, y);
-            SetSpinning(true); //todo remove
+            OnGemClick(x, y);
         }
     }
     
