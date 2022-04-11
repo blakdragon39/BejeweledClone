@@ -460,7 +460,6 @@ GameObject:
   - component: {fileID: 2091783941}
   - component: {fileID: 2091783940}
   - component: {fileID: 2091783942}
-  - component: {fileID: 2091783943}
   m_Layer: 5
   m_Name: Board
   m_TagString: Untagged
@@ -485,7 +484,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 25, y: -25}
-  m_SizeDelta: {x: 561.9, y: 467.13}
+  m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2091783940
 MonoBehaviour:
@@ -547,17 +546,4 @@ MonoBehaviour:
   rainbowStarPrefab: {fileID: 1822992089238855535, guid: bb74edacb29067d4c916eeeea67c3c6b, type: 3}
   boardSize: 10
   gemSize: 42
---- !u!114 &2091783943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091783937}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 1
-  m_VerticalFit: 1
+  swapSpeed: 0.3
